@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { CountriesContext } from '../context/CountriesContext';
 import { FaMoon, FaSun } from 'react-icons/fa';
 
 type Props = {
@@ -8,10 +11,19 @@ type Props = {
 };
 
 const Header: React.FC<Props> = ({ darkMode: { darkMode, setDarkMode } }) => {
+  const { setFetchType, setRegion } = useContext(CountriesContext);
+
+  const refetchLogoHandler = () => {
+    setRegion('world');
+    setFetchType('all');
+  };
+
   return (
     <div className="dark:bg-blue shadow-md">
       <div className="max-w-[120rem] mx-auto flex justify-between py-[2rem]">
-        <h1 className="text-[2rem] font-semibold">Where In The World?!</h1>
+        <Link onClick={refetchLogoHandler} to="/">
+          <h1 className="text-[2rem] font-semibold">I 💘 Geography</h1>
+        </Link>
         {!darkMode && (
           <div
             onClick={() => setDarkMode(prev => !prev)}

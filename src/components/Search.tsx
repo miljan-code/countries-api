@@ -23,7 +23,7 @@ const Search = () => {
       <input
         type="text"
         placeholder="Search for a country..."
-        className="pl-[5.5rem] p-4 dark:bg-blue rounded text-[1.4rem] w-[40rem] shadow-md focus:outline-none font-light"
+        className="pl-[5.5rem] p-4 dark:bg-blue rounded text-[1.4rem] w-[40rem] shadow-whole dark:shadow-md focus:outline-none font-light"
         ref={searchRef}
       />
     </form>

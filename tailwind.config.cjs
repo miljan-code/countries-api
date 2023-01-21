@@ -11,6 +11,9 @@ module.exports = {
         darkGray: '#858585',
         lightGray: '#fafafa',
       },
+      boxShadow: {
+        whole: '0px 0px 5px #ccc',
+      },
     },
   },
   plugins: [],

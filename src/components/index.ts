@@ -4,5 +4,18 @@ import Countries from './Countries';
 import Dropdown from './Dropdown';
 import DropdownItem from './DropdownItem';
 import Search from './Search';
+import Card from './Card';
+import Layout from './Layout';
+import Country from './Country';
 
-export { Header, Browse, Countries, Dropdown, DropdownItem, Search };
+export {
+  Header,
+  Browse,
+  Countries,
+  Dropdown,
+  DropdownItem,
+  Search,
+  Card,
+  Layout,
+  Country,
+};
