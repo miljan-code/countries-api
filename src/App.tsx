@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Header } from './components';
+import { Header, Browse, Countries } from './components';
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(true);
@@ -7,7 +7,9 @@ const App = () => {
   return (
     <div className={darkMode ? 'dark' : ''}>
       <div className="bg-white text-blackBlue dark:bg-darkBlue dark:text-white min-h-[100vh]">
-        <Header />
+        <Header darkMode={{ darkMode, setDarkMode }} />
+        <Browse />
+        <Countries />
       </div>
     </div>
   );
