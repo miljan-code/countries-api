@@ -33,7 +33,7 @@ export const getCountryData = (data: any) => {
   }
   const languages = langArr.join(', ');
 
-  const borders = data.borders;
+  let borders: string[] = data.borders || [];
 
   return {
     nativeName,

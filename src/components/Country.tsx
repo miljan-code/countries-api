@@ -4,12 +4,11 @@ import { getCountryData } from '../services/helpers';
 
 const Country = () => {
   const { country } = useParams();
-
-  const { data, isLoading, isError, error } = useCountryData(country as string);
-
   const navigate = useNavigate();
 
-  if (isLoading) return null;
+  const { data, status, borderNames } = useCountryData(country as string);
+
+  if (status === 'loading') return;
 
   const {
     countryName,
@@ -21,7 +20,6 @@ const Country = () => {
     tld,
     currencies,
     languages,
-    borders,
   } = getCountryData(data[0]);
 
   return (
@@ -77,8 +75,11 @@ const Country = () => {
           <div className="mt-[3rem] flex place-items-center gap-[1rem]">
             <p className="text-[1.4rem]">Border Countries:</p>
             <div className="">
-              {borders.map((border: string) => (
-                <button className="dark:bg-blue shadow-whole dark:shadow-sm px-[1.5rem] rounded text-[1.2rem] font-light">
+              {borderNames?.map((border: string) => (
+                <button
+                  key={crypto.randomUUID()}
+                  className="dark:bg-blue shadow-whole dark:shadow-sm px-[1.5rem] rounded text-[1.2rem] font-light"
+                >
                   {border}
                 </button>
               ))}

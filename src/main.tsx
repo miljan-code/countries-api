@@ -5,6 +5,7 @@ import './index.css';
 
 import { CountriesProvider } from './context/CountriesContext';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Browse, Countries, Country } from './components';
@@ -45,6 +46,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <CountriesProvider>
         <RouterProvider router={router} />
       </CountriesProvider>
+      <ReactQueryDevtools />
     </QueryClientProvider>
   </React.StrictMode>
 );
