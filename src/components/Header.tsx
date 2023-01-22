@@ -11,11 +11,12 @@ type Props = {
 };
 
 const Header: React.FC<Props> = ({ darkMode: { darkMode, setDarkMode } }) => {
-  const { setFetchType, setRegion } = useContext(CountriesContext);
+  const { setFetchType, setRegion, setPage } = useContext(CountriesContext);
 
   const refetchLogoHandler = () => {
     setRegion('world');
     setFetchType('all');
+    setPage(1);
   };
 
   return (

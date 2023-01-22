@@ -2,18 +2,24 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { FetchType, RegionType } from '../models/types';
 
-const fetchCountries = () =>
-  axios.get('https://restcountries.com/v3.1/all').then(data => data.data);
+const fetchCountries = async () => {
+  const data = await axios.get('https://restcountries.com/v3.1/all');
+  return data.data;
+};
 
-const fetchByRegion = (region: RegionType) =>
-  axios
-    .get(`https://restcountries.com/v3.1/region/${region}`)
-    .then(data => data.data);
+const fetchByRegion = async (region: RegionType) => {
+  const data = await axios.get(
+    `https://restcountries.com/v3.1/region/${region}`
+  );
+  return data.data;
+};
 
-const fetchByName = (countryName: string) =>
-  axios
-    .get(`https://restcountries.com/v3.1/name/${countryName}`)
-    .then(data => data.data);
+const fetchByName = async (countryName: string) => {
+  const data = await axios.get(
+    `https://restcountries.com/v3.1/name/${countryName}`
+  );
+  return data.data;
+};
 
 const getAllCountriesData = (fetchType: FetchType) => {
   return useQuery({

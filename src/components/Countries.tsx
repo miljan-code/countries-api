@@ -1,10 +1,11 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CountriesContext } from '../context/CountriesContext';
 import { useCountriesData } from '../hooks/useCountriesData';
 import { Card } from './';
 
 const Countries = () => {
-  const { fetchType, region, searchTerm } = useContext(CountriesContext);
+  const { fetchType, region, searchTerm, page, itemsPerPage, setPage } =
+    useContext(CountriesContext);
 
   const { data, isLoading, isError, error } = useCountriesData(
     fetchType,
@@ -12,10 +13,12 @@ const Countries = () => {
     searchTerm
   );
 
+  const loadMoreData = data?.slice(0, page * itemsPerPage);
+
   return (
     <>
       <div className="max-w-[120rem] mx-auto grid grid-cols-4 gap-[5rem]">
-        {data?.map((country: any) => (
+        {loadMoreData?.map((country: any) => (
           <Card
             key={crypto.randomUUID()}
             countryName={country?.name?.common}
@@ -26,6 +29,16 @@ const Countries = () => {
           />
         ))}
       </div>
+      {page * itemsPerPage < data?.length && (
+        <div className="text-center">
+          <p
+            onClick={() => setPage(page + 1)}
+            className="cursor-pointer mt-[4rem] bg-blackBlue text-white dark:bg-blue inline-block px-[1rem] py-[.5rem] rounded mb-[4rem]"
+          >
+            Load More
+          </p>
+        </div>
+      )}
     </>
   );
 };

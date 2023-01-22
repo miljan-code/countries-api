@@ -10,7 +10,8 @@ const Dropdown = () => {
 
   const regionRef = useRef<HTMLDivElement | null>(null);
 
-  const { region, setRegion, setFetchType } = useContext(CountriesContext);
+  const { region, setRegion, setFetchType, setPage } =
+    useContext(CountriesContext);
 
   const regions: RegionType[] = [
     'africa',
@@ -28,9 +29,10 @@ const Dropdown = () => {
   };
 
   const changeRegionHandler = (e: React.MouseEvent<HTMLLIElement>) => {
-    const region = e.currentTarget.innerHTML;
-    setRegion(region as RegionType);
-    if (region === 'World') return setFetchType('all');
+    const newRegion = e.currentTarget.innerHTML;
+    if (newRegion !== region) setPage(1);
+    setRegion(newRegion as RegionType);
+    if (newRegion === 'World') return setFetchType('all');
     setFetchType('region');
   };
 
@@ -54,7 +56,7 @@ const Dropdown = () => {
         <FaArrowDown className="text-[1.2rem]" />
       </div>
       {showOptions && (
-        <ul className="absolute w-full dark:bg-blue rounded mt-2 flex flex-col gap-2 cursor-pointer py-3 font-light text-[1.4rem] shadow-whole dark:shadow-md">
+        <ul className="absolute w-full bg-white dark:bg-blue rounded mt-2 flex flex-col gap-2 cursor-pointer py-3 font-light text-[1.4rem] shadow-whole dark:shadow-md">
           {regions.map(region => (
             <DropdownItem
               key={crypto.randomUUID()}

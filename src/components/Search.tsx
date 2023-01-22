@@ -3,7 +3,7 @@ import { CountriesContext } from '../context/CountriesContext';
 import { FaSearch } from 'react-icons/fa';
 
 const Search = () => {
-  const { setSearchTerm, setFetchType } = useContext(CountriesContext);
+  const { setSearchTerm, setFetchType, setPage } = useContext(CountriesContext);
 
   const searchRef = useRef<HTMLInputElement | null>(null);
 
@@ -12,6 +12,7 @@ const Search = () => {
 
     if (!searchRef.current || searchRef.current.value === '') return;
 
+    setPage(1);
     setSearchTerm(searchRef.current.value);
     setFetchType('search');
     searchRef.current.value = '';
