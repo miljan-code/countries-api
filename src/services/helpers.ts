@@ -2,7 +2,11 @@ export const capitalize = (str: string): string => {
   return str.split('').at(0)?.toUpperCase() + str.slice(1);
 };
 
-export const getCountryData = (data: any) => {
+export const toParams = (str: string): string => {
+  return str.toLowerCase().split(' ').join('-');
+};
+
+export const transformCountryData = (data: any) => {
   const [nativeNameKey] = Object.keys(data.name.nativeName);
   const nativeName =
     data.name.nativeName[nativeNameKey].official.length > 31
@@ -33,7 +37,7 @@ export const getCountryData = (data: any) => {
   }
   const languages = langArr.join(', ');
 
-  let borders: string[] = data.borders || [];
+  const borders: string[] = data.borders || [];
 
   return {
     nativeName,

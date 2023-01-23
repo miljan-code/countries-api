@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { CountriesContext } from '../context/CountriesContext';
 import { useCountriesData } from '../hooks/useCountriesData';
 import { Card } from './';
@@ -33,7 +33,7 @@ const Countries = () => {
         <div className="text-center">
           <p
             onClick={() => setPage(page + 1)}
-            className="cursor-pointer mt-[4rem] bg-blackBlue text-white dark:bg-blue inline-block px-[1rem] py-[.5rem] rounded mb-[4rem]"
+            className="cursor-pointer mt-[4rem] dark:bg-blue inline-block px-[1rem] py-[.5rem] rounded mb-[4rem] shadow-whole dark:shadow-sm"
           >
             Load More
           </p>

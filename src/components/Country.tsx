@@ -1,14 +1,17 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useCountryData } from '../hooks/useCountryData';
-import { getCountryData } from '../services/helpers';
+import { transformCountryData } from '../services/helpers';
+import { toParams } from '../services/helpers';
 
 const Country = () => {
   const { country } = useParams();
   const navigate = useNavigate();
 
-  const { data, status, borderNames } = useCountryData(country as string);
+  const { data, isLoading, isError, error, borderNames } = useCountryData(
+    country as string
+  );
 
-  if (status === 'loading') return;
+  if (isLoading) return <p>Loading...</p>;
 
   const {
     countryName,
@@ -20,7 +23,7 @@ const Country = () => {
     tld,
     currencies,
     languages,
-  } = getCountryData(data[0]);
+  } = transformCountryData(data[0]);
 
   return (
     <div className="max-w-[120rem] mx-auto">
@@ -76,12 +79,14 @@ const Country = () => {
             <p className="text-[1.4rem]">Border Countries:</p>
             <div className="">
               {borderNames?.map((border: string) => (
-                <button
-                  key={crypto.randomUUID()}
-                  className="dark:bg-blue shadow-whole dark:shadow-sm px-[1.5rem] rounded text-[1.2rem] font-light"
-                >
-                  {border}
-                </button>
+                <Link to={`/country/${toParams(border)}`}>
+                  <button
+                    key={crypto.randomUUID()}
+                    className="dark:bg-blue shadow-whole dark:shadow-sm px-[1.5rem] rounded text-[1.2rem] font-light"
+                  >
+                    {border}
+                  </button>
+                </Link>
               ))}
             </div>
           </div>

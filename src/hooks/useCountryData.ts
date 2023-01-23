@@ -5,14 +5,13 @@ const fetchCountry = async (countryName: string) => {
   const country = countryName.split('-').join(' ');
 
   const data = await axios.get(
-    `https://restcountries.com/v3.1/name/${country}`
+    `https://restcountries.com/v3.1/name/${country}?fullText=true`
   );
   return data.data;
 };
 
 const getBorderCountriesName = async (borders: string[]) => {
-  if (!borders) return [];
-  if (borders.length <= 0) return borders;
+  if (borders.length === 0 || !borders) return [];
 
   const bordersArr = await Promise.all(
     borders.map(async border => {
@@ -27,18 +26,23 @@ const getBorderCountriesName = async (borders: string[]) => {
 };
 
 export const useCountryData = (countryName: string) => {
-  const { data } = useQuery({
+  let {
+    data = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
     queryKey: ['country', countryName],
     queryFn: () => fetchCountry(countryName),
   });
 
-  const borders = data?.borders;
+  const borders = data[0]?.borders;
 
-  const { status, data: borderNames } = useQuery({
+  const { data: borderNames } = useQuery({
     queryKey: ['borders', countryName],
     queryFn: () => getBorderCountriesName(borders),
-    enabled: borders,
+    enabled: !!borders,
   });
 
-  return { data, status, borderNames };
+  return { data, isLoading, isError, error, borderNames };
 };

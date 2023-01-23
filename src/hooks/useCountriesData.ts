@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 import { FetchType, RegionType } from '../models/types';
 
 const fetchCountries = async () => {
@@ -50,27 +50,8 @@ export const useCountriesData = (
   region: RegionType,
   countryName = ''
 ) => {
-  if (fetchType === 'all') {
-    const { data, isLoading, isError, error } = getAllCountriesData(fetchType);
-    return { data, isLoading, isError, error };
-  } else if (fetchType === 'region') {
-    const { data, isLoading, isError, error } = getByRegionCountryData(
-      region,
-      fetchType
-    );
-    return { data, isLoading, isError, error };
-  } else if (fetchType === 'search') {
-    const { data, isLoading, isError, error } = getByNameCountryData(
-      countryName,
-      fetchType
-    );
-    return { data, isLoading, isError, error };
-  } else {
-    return {
-      data: undefined,
-      isLoading: undefined,
-      isError: undefined,
-      error: undefined,
-    };
-  }
+  if (fetchType === 'region') return getByRegionCountryData(region, fetchType);
+  else if (fetchType === 'search')
+    return getByNameCountryData(countryName, fetchType);
+  else return getAllCountriesData(fetchType);
 };
