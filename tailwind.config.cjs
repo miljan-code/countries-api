@@ -15,6 +15,14 @@ module.exports = {
         whole: '0px 0px 5px #ccc',
       },
     },
+    screens: {
+      ss: '500px',
+      sm: '700px',
+      ms: '800px',
+      md: '950px',
+      l: '1024px',
+      xl: '1200px',
+    },
   },
   plugins: [],
 };

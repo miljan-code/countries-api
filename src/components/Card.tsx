@@ -20,7 +20,10 @@ const Card = ({
   return (
     <div className="rounded min-h-[30rem] overflow-hidden shadow-whole dark:shadow-md">
       <Link to={`/country/${URL}`}>
-        <img src={image} className="w-full h-[15rem] object-cover" />
+        <img
+          src={image}
+          className="w-full h-[20rem] ss:h-[15rem] object-cover"
+        />
       </Link>
       <div className="h-full dark:bg-blue p-[2rem]">
         <Link to={`/country/${URL}`}>

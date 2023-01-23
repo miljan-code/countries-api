@@ -31,7 +31,7 @@ export const transformCountryData = (data: any) => {
 
   const currencies = data.currencies
     ? Object.entries(data.currencies)
-        .map((cur: any[]) => cur[1].name)
+        .map((cur: any) => cur[1].name)
         .join(', ')
     : 'Unknown';
 

@@ -17,7 +17,7 @@ const Countries = () => {
 
   return (
     <>
-      <div className="max-w-[120rem] mx-auto grid grid-cols-4 gap-[5rem]">
+      <div className="max-w-[120rem] px-[2rem] xl:px-0 mx-auto grid ss:grid-cols-2 md:grid-cols-4 gap-[5rem]">
         {loadMoreData?.map((country: any) => (
           <Card
             key={crypto.randomUUID()}

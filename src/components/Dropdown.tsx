@@ -45,7 +45,7 @@ const Dropdown = () => {
   }, [regionRef]);
 
   return (
-    <div ref={regionRef} className="relative w-[17rem]">
+    <div ref={regionRef} className="relative sm:w-[17rem]">
       <div
         onClick={() => setShowOptions(prev => !prev)}
         className="flex justify-between items-center gap-[2rem] px-[1.5rem] py-[1.25rem] dark:bg-blue rounded shadow-whole dark:shadow-md cursor-pointer font-light"

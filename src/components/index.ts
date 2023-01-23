@@ -7,6 +7,7 @@ import Search from './Search';
 import Card from './Card';
 import Layout from './Layout';
 import Country from './Country';
+import Footer from './Footer';
 
 export {
   Header,
@@ -18,4 +19,5 @@ export {
   Card,
   Layout,
   Country,
+  Footer,
 };

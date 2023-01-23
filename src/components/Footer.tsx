@@ -1,14 +1,14 @@
 const Footer = () => {
   return (
-    <div className="text-center my-[5rem]">
+    <div className="text-center py-[5rem]">
       <p>
-        Developed by{' '}
+        developed by{' '}
         <a href="https://miljangicic.netlify.app" target="_blank">
-          miljan
+          <span className="text-red-600">miljan</span>
         </a>
-        . Data by{' '}
+        . data by{' '}
         <a href="https://restcountries.com" target="_blank">
-          RestCountries
+          <span className="text-red-600">restcountries</span>
         </a>
         .
       </p>
