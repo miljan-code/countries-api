@@ -38,11 +38,11 @@ export const useCountryData = (countryName: string) => {
 
   const borders = data[0]?.borders;
 
-  const { data: borderNames } = useQuery({
+  const { data: borderNames, status } = useQuery({
     queryKey: ['borders', countryName],
     queryFn: () => getBorderCountriesName(borders),
     enabled: !!borders,
   });
 
-  return { data, isLoading, isError, error, borderNames };
+  return { data, isLoading, isError, error, borderNames, status };
 };

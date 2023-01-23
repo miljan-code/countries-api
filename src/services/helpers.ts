@@ -6,11 +6,15 @@ export const toParams = (str: string): string => {
   return str.toLowerCase().split(' ').join('-');
 };
 
+export const shorten = (str: string, to: number): string => {
+  return str.slice(0, to) + '...';
+};
+
 export const transformCountryData = (data: any) => {
   const [nativeNameKey] = Object.keys(data.name.nativeName);
   const nativeName =
     data.name.nativeName[nativeNameKey].official.length > 31
-      ? data.name.nativeName[nativeNameKey].official.slice(0, 31) + '...'
+      ? shorten(data.name.nativeName[nativeNameKey].official, 31)
       : data.name.nativeName[nativeNameKey].official;
 
   const countryName = data.name.official;

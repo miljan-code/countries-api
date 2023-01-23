@@ -21,27 +21,24 @@ const fetchByName = async (countryName: string) => {
   return data.data;
 };
 
-const getAllCountriesData = (fetchType: FetchType) => {
+const getAllCountriesData = () => {
   return useQuery({
     queryKey: ['countries'],
     queryFn: fetchCountries,
-    enabled: fetchType === 'all',
   });
 };
 
-const getByRegionCountryData = (region: RegionType, fetchType: FetchType) => {
+const getByRegionCountryData = (region: RegionType) => {
   return useQuery({
     queryKey: ['region', region],
     queryFn: () => fetchByRegion(region),
-    enabled: fetchType === 'region',
   });
 };
 
-const getByNameCountryData = (countryName: string, fetchType: FetchType) => {
+const getByNameCountryData = (countryName: string) => {
   return useQuery({
     queryKey: ['name', countryName],
     queryFn: () => fetchByName(countryName),
-    enabled: fetchType === 'search',
   });
 };
 
@@ -50,8 +47,7 @@ export const useCountriesData = (
   region: RegionType,
   countryName = ''
 ) => {
-  if (fetchType === 'region') return getByRegionCountryData(region, fetchType);
-  else if (fetchType === 'search')
-    return getByNameCountryData(countryName, fetchType);
-  else return getAllCountriesData(fetchType);
+  if (fetchType === 'region') return getByRegionCountryData(region);
+  else if (fetchType === 'search') return getByNameCountryData(countryName);
+  else return getAllCountriesData();
 };

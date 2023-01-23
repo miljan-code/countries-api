@@ -1,6 +1,6 @@
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useCountryData } from '../hooks/useCountryData';
-import { transformCountryData } from '../services/helpers';
+import { shorten, transformCountryData } from '../services/helpers';
 import { toParams } from '../services/helpers';
 
 const Country = () => {
@@ -76,18 +76,18 @@ const Country = () => {
             </li>
           </ul>
           <div className="mt-[3rem] flex place-items-center gap-[1rem]">
-            <p className="text-[1.4rem]">Border Countries:</p>
-            <div className="">
+            <p className="text-[1.4rem] self-start">Border Countries:</p>
+            <div className="grid grid-cols-3 gap-[1rem]">
               {borderNames?.map((border: string) => (
                 <Link to={`/country/${toParams(border)}`}>
                   <button
                     key={crypto.randomUUID()}
-                    className="dark:bg-blue shadow-whole dark:shadow-sm px-[1.5rem] rounded text-[1.2rem] font-light"
+                    className="dark:bg-blue shadow-whole dark:shadow-sm px-[1.5rem] rounded text-[1.2rem] font-light w-full"
                   >
-                    {border}
+                    {border.length > 13 ? shorten(border, 13) : border}
                   </button>
                 </Link>
-              ))}
+              )) || <span className="font-light text-[1.4rem]">None</span>}
             </div>
           </div>
         </div>
