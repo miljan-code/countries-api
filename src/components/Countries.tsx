@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { CountriesContext } from '../context/CountriesContext';
 import { useCountriesData } from '../hooks/useCountriesData';
-import { Card } from './';
+import { Card, Loading } from './';
 
 const Countries = () => {
   const { fetchType, region, searchTerm, page, itemsPerPage, setPage } =
@@ -12,6 +12,8 @@ const Countries = () => {
     region,
     searchTerm
   );
+
+  if (isLoading) return <Loading />;
 
   const loadMoreData = data?.slice(0, page * itemsPerPage);
 

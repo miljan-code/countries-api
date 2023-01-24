@@ -2,6 +2,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useCountryData } from '../hooks/useCountryData';
 import { shorten, transformCountryData } from '../services/helpers';
 import { toParams } from '../services/helpers';
+import { Loading } from './';
 
 const Country = () => {
   const { country } = useParams();
@@ -11,7 +12,7 @@ const Country = () => {
     country as string
   );
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading />;
 
   const {
     countryName,

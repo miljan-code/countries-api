@@ -8,6 +8,7 @@ import Card from './Card';
 import Layout from './Layout';
 import Country from './Country';
 import Footer from './Footer';
+import Loading from './Loading';
 
 export {
   Header,
@@ -20,4 +21,5 @@ export {
   Layout,
   Country,
   Footer,
+  Loading,
 };
